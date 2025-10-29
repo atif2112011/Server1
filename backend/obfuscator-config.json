@@ -1,0 +1,27 @@
+{
+  "compact": true,
+  "controlFlowFlattening": true,
+  "deadCodeInjection": true,
+  "disableConsoleOutput": false,
+  "identifierNamesGenerator": "hexadecimal",
+  "ignoreImports": true,
+  "renameGlobals": true,
+  "rotateStringArray": true,
+  "selfDefending": true,
+  "stringArray": true,
+  "transformObjectKeys": true,
+  "unicodeEscapeSequence": false,
+
+  "reservedNames": ["^require$", "^__dirname$", "^__filename$"],
+
+
+  "reservedStrings": ["^fs$", "^path$", "^os$", "^\\.\\/.*$", "^\\.\\.\\/.*$"],
+  
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".env",
+    "*.json"
+  ]
+}

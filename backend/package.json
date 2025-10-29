@@ -6,17 +6,54 @@
   "author": "",
   "type": "commonjs",
   "main": "db.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+  "bin": "server.js",
+  "pkg": {
+    "targets": [
+      "node18-linux-x64"
+    ],
+   
+    "scripts": [
+  
+      "server.js",
+      "db.js",
+      
+      
+
+      
+      "../node_modules/string-width/index.js",
+      "../node_modules/strip-ansi/index.js",
+      "../node_modules/wrap-ansi/index.js",
+      "../node_modules/ansi-regex/index.js",
+      "../node_modules/ansi-styles/index.js"
+    ]
   },
+ 
+ "scripts": {
+  "clean": "rimraf ./backend-obf && rimraf ./dist",
+  "obf": "npx javascript-obfuscator . --output backend-obf --config obfuscator-config.json",
+  "prepare-obf": "node scripts/prepare-obf.js",
+  "copy-config": "copy package.json backend-obf",
+  "build:pkg:linux": "npx pkg ./backend-obf/package.json --targets node18-linux-x64 --output ./dist/my-app-linux",
+  "build-backend-obf": "npm run clean && npm run obf && npm run copy-config && npm run build:pkg:linux",
+  "start": "nodemon server.js"
+},
+
+  
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "javascript-obfuscator": "^4.1.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.1",
     "morgan": "^1.10.1",
     "nodemon": "^3.1.10",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "rimraf": "^6.0.1"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
   }
 }

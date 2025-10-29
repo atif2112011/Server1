@@ -1,11 +1,12 @@
 import axios from "axios";
+import api from "../api";
 
 // const api = axios.create({
 //   baseURL: "http://localhost:5000/api",
 // });
 export const getEmployees = async () => {
    try {
-     const response = await axios.get(
+     const response = await api.get(
         "api/employees"
     );
     if(response.data.success){
@@ -28,7 +29,7 @@ export const getEmployees = async () => {
 
 export const addEmployee = async (data) => {
    try {
-     const response = await axios.post(
+     const response = await api.post(
         "api/employees",
         data
     );
@@ -52,7 +53,7 @@ export const addEmployee = async (data) => {
 
 export const deleteEmployee = async (id) => {
    try {
-     const response = await axios.delete(
+     const response = await api.delete(
         `api/employees/${id}`
     );
     

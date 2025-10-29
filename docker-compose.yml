@@ -1,17 +1,35 @@
-
 services:
   app:
-    build: .            # uses Dockerfile in root
+    
+    image: myapp:latest
+    
+    
+    # Map port 5000 on your machine to port 3000 in the container
     ports:
-      - "5000:5000"
+      - "5000:5000" 
+    
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/mydb
+      # These variables are passed into your app
+      - MONGODB_URI=mongodb://admin:mysecretpassword@mongo:27017/myAppDB?authSource=admin
+      - PORT=5000 # Must match the port your app and Dockerfile use
+      - NODE_ENV=production
+      - ACCESS_TOKEN_SECRET="johndoe@123"
+      - REFRESH_TOKEN_SECRET="johndoe@123"
+  
     depends_on:
       - mongo
+    restart: no
 
   mongo:
     image: mongo:7
-    restart: always
+    restart: no
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: mysecretpassword
+    ports:
+      # This binds the port ONLY to the host's localhost
+      # It's not accessible from the external network.
+      - "127.0.0.1:27017:27017"  
     volumes:
       - mongo_data:/data/db
 

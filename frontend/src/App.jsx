@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { addEmployee, deleteEmployee, getEmployees } from "../apis/employee";
+import Loader from "../components/Loader";
 
 const App = () => {
   const [employees, setEmployees] = useState([]);
@@ -59,7 +60,7 @@ const App = () => {
       <h1 className="text-2xl font-bold mb-4">Employee List</h1>
 
       {loading ? (
-        <p>Loading employees...</p>
+        <Loader />
       ) : (
         <table className="min-w-full bg-white border border-gray-300 rounded-md shadow-sm">
           <thead className="bg-gray-200">
