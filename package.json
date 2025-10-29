@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build --prefix frontend",
     "start": "npm run build --prefix frontend && npm run start --prefix backend",
-    "build-all": "echo '[1/5] Building frontend...' && (cd frontend && npm run build) && echo '[2/5] Building backend...' && (cd ../backend && npm run build-backend-obf) && echo '[3/5] Building Docker image...' && cd .. && docker build -t myapp:latest . && echo '[4/5] Saving image...' && docker save myapp:latest -o myapp.tar && echo '[5/5] All done!You can copy the docker-compose.yml and myapp.tar files to another machine to run the app.'"
+    "build-image": "echo '[1/5] Building frontend...' && (cd frontend && npm run build) && echo '[2/5] Building backend...' && (cd ../backend && npm run build-backend-obf) && echo '[3/5] Building Docker image...' && cd .. && docker build -t myapp:latest . && echo '[4/5] Saving image...' && docker save myapp:latest -o myapp.tar && echo '[5/5] All done!You can copy the docker-compose.yml and myapp.tar files to another machine to run the app.'"
   },
   "dependencies": {
     "concurrently": "^9.2.1"
